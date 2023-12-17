@@ -25,10 +25,19 @@ student_info = [
 
 cursor.executemany("INSERT INTO student VALUES(?,?,?,?,?,?,?)", student_info)
 
+def display_student_info():
+    connection = sqlite3.connect("student.db")
+    cursor = connection.cursor()
+    
 # Print database rows
 print("\n*********STUDENT INFO****************")
 for row in cursor.execute("SELECT * FROM student"):
     print(row)
 
 connection.close()
+
+if __name__ =="__main__":
+    display_student_info()
+
+
 
