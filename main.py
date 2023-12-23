@@ -36,6 +36,66 @@ for row in cursor.execute("SELECT * FROM student"):
 
 connection.close()
 
+cont = input('Do you want to make changes? yes/no')
+
+if cont == ' yes':
+        connection = sqlite3.connect("student.db")
+        cursor = connection.cursor()
+
+        ID = (input('What student ID would you like to make edits to?'))
+        cursor.execute('SELECT student_id FROM student WHERE student_id == ?', (ID,))
+        Change = cursor.fetchone()
+
+        var = input('What would you like to change? (type as first, last, email, dob, age, grade)')
+
+        if var == ' first':
+            new = input('Enter new first name:')
+            cursor.execute('UPDATE student SET first_name = ? WHERE student_id == ?', (new, ID))
+
+            print('Change is set.')
+            connection.commit()
+            connection.close()
+
+        elif var == ' last':
+            new = input('Enter new last name:')
+            cursor.execute('UPDATE student SET last_name = ? WHERE student_id == ?', (new, ID))
+
+            print('Change is set.')
+            connection.commit()
+            connection.close()
+
+        elif var == ' email':
+            new = input('Enter new email:')
+            cursor.execute('UPDATE student SET email = ? WHERE student_id == ?', (new, ID))
+
+            print('Change is set.')
+            connection.commit()
+            connection.close()
+
+        elif var == ' dob':
+            new = input('Enter new date of birth (MM/DD/YEAR):')
+            cursor.execute('UPDATE student SET date_of_birth = ? WHERE student_id == ?', (new, ID))
+
+            print('Change is set.')
+            connection.commit()
+            connection.close()
+
+        elif var == ' age':
+            new = input('Enter new age:')
+            cursor.execute('UPDATE student SET age = ? WHERE student_id == ?', (new, ID))
+
+            print('Change is set.')
+            connection.commit()
+            connection.close()
+
+        elif var == ' grade':
+            new = input('Enter new grade:')
+            cursor.execute('UPDATE student SET grade_level = ? WHERE student_id == ?', (new, ID))
+
+            print('Change is set.')
+            connection.commit()
+            connection.close()
+
 if __name__ =="__main__":
     display_student_info()
 
